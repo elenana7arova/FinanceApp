@@ -47,7 +47,7 @@ class AddTransferViewController: UIViewController {
 
         if accountFromPreChosen != nil{
             chosenAccountFrom = accountFromPreChosen
-            chosenAccountTo = /*K.defaultAccount*/ realm.objects(Account.self).filter("id != %@ && id != %@", chosenAccountFrom!.id, K.defaultAccountIfDeleted!.id).first
+            chosenAccountTo = realm.objects(Account.self).filter("id != %@ && id != %@", chosenAccountFrom!.id, K.defaultAccountIfDeleted!.id).first
         }
     }
     

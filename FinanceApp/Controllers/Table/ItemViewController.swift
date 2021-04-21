@@ -172,7 +172,7 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
                 cell.moneyFlowLabel.text = symbol + current.moneyFlow.formattedWithSeparator + currency
                 cell.dateLabel.text = dateFormatter.string(from: current.dateCreated!)
                 
-                dateIsFuture(check: current.dateCreated!, in: cell, now: nowDate)
+                //dateIsFuture(check: current.dateCreated!, in: cell, now: nowDate)
                 return cell
             }
             else {
@@ -195,7 +195,7 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
                 }
                 cell.fromAccountLabel.text = current.accountFrom?.accountName
                 cell.toAccountLabel.text = current.accountTo?.accountName
-                dateIsFuture(check: current.dateCreated!, in: cell, now: nowDate)
+                //dateIsFuture(check: current.dateCreated!, in: cell, now: nowDate)
                 return cell
             }
         }

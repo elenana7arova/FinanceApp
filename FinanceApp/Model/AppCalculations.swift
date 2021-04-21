@@ -102,7 +102,6 @@ struct AppCalculations {
         for object in objects {
             if object.isIncome {
                 dateIsPresent(date: object.dateCreated!) ? (balance += object.moneyFlow) : ()
-                    //balance += object.moneyFlow
                 
                 allIncome += object.moneyFlow
                 if calendar.isDateInToday(object.dateCreated!) {
@@ -117,7 +116,7 @@ struct AppCalculations {
             }
             else {
                 dateIsPresent(date: object.dateCreated!) ? (balance -= object.moneyFlow) : ()
-                //balance -= object.moneyFlow
+                
                 allOutcome -= object.moneyFlow
                 if calendar.isDateInToday(object.dateCreated!) {
                     tOutcome -= object.moneyFlow
@@ -135,7 +134,7 @@ struct AppCalculations {
         for transfer in transfers {
             if transfer.accountFrom == account {
                 dateIsPresent(date: transfer.dateCreated!) ? (balance -= transfer.moneyFlow) : ()
-                //balance -= transfer.moneyFlow
+                
                 allOutTransfer += transfer.moneyFlow
                 
                 if calendar.isDateInToday(transfer.dateCreated!) {
@@ -150,7 +149,7 @@ struct AppCalculations {
             }
             else if transfer.accountTo == account {
                 dateIsPresent(date: transfer.dateCreated!) ? (balance += transfer.moneyFlow) : ()
-                //balance += transfer.moneyFlow
+                
                 allInTransfer += transfer.moneyFlow
                 
                 if calendar.isDateInToday(transfer.dateCreated!) {

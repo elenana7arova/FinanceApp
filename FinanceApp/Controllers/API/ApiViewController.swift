@@ -11,14 +11,7 @@ import SwiftyJSON
 public var nowDate = Date()
 
 class ApiViewController: UIViewController {
-    //currencyscoop
-    
-
-   //"https://api.nomics.com/v1/
-    
-//    let endpoint_ = "convert"
-    
-    
+ 
     let dateFormatter = DateFormatter()
     let utcISODateFormatter = ISO8601DateFormatter()
     let ISO8601Formatter = ISO8601DateFormatter()
@@ -51,7 +44,7 @@ class ApiViewController: UIViewController {
     }
     
     func fetchRates() {
-        let apiKey = "24e5830a39d7446448c5ce14133d5e54"
+        let apiKey = "insert yours"
         let endpoint = "latest"
         let baseURL = "https://api.currencyscoop.com/v1/"
         
@@ -83,7 +76,7 @@ class ApiViewController: UIViewController {
     func fetchCrypto() {
         let baseURL = "https://rest.coinapi.io/v1/"
         let endpoint = "exchangerate/"
-        let apiKey = "2F914509-A68C-4ABD-B915-6322841B26BF"
+        let apiKey = "insert yours"
     
         let labels = [btc,eth,ltc,xlm,dot,xrp]
         let from = ["BTC","ETH","LTC","XLM","DOT","XRP"]

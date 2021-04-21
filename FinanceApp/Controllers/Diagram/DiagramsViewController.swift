@@ -235,24 +235,11 @@ extension DiagramsViewController: ChartViewDelegate {
         let pieChartDataSet = PieChartDataSet(entries: dataEntries, label: nil)
         
         pieChartDataSet.colors = pieChartDataSet.entries.contains(emptyEntry) ? ([UIColor.white]) : (setArrays().colors)
-//        if pieChartDataSet.entries.contains(emptyEntry) {
-//            pieChartDataSet.colors = [UIColor.white]
-//        }
-//        else {
-//            pieChartDataSet.colors = setArrays().colors
-//        }
         pieChartDataSet.sliceSpace = 3 //белые отступы между слайслами
         
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
         
         pieChartData.setValueTextColor(pieChartDataSet.entries.contains(emptyEntry) ? (UIColor.clear) : (UIColor(named: "dark_gray")!))
-        
-//        if pieChartDataSet.entries.contains(emptyEntry) {
-//            pieChartData.setValueTextColor(UIColor.clear)
-//        }
-//        else {
-//            pieChartData.setValueTextColor(UIColor(named: "dark_gray")!)
-//        }
         pieChartData.setValueFont(UIFont.systemFont(ofSize: 17))
         pieChart.data = pieChartData
         
