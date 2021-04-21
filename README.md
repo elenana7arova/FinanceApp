@@ -6,8 +6,9 @@ FinanceApp - это приложение, с помощью которого м�
   <tr>
     <th><img alt="gif1" src="./screens/1.gif" width="300"></th>
     <th><img alt="gif2" src="./screens/2.gif" width="300"></th>
-    <th><img alt="gif3" src="./screens/4.gif" width="300"></th>
-    <th><img alt="gif4" src="./screens/3.gif" width="300"></th>
+    <th><img alt="gif3" src="./screens/3.gif" width="300"></th>
+    <th><img alt="gif4" src="./screens/4.gif" width="300"></th>
+    <th><img alt="gif5" src="./screens/5.gif" width="300"></th>
   </tr>
 </table>
 
