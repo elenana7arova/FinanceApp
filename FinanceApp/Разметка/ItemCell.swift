@@ -9,6 +9,7 @@ import UIKit
 
 class ItemCell: UITableViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var moneyFlowLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

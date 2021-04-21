@@ -8,7 +8,11 @@
 import UIKit
 
 class TransferCell: UITableViewCell {
-
+    @IBOutlet weak var fromAccountLabel: UILabel!
+    @IBOutlet weak var toAccountLabel: UILabel!
+    @IBOutlet weak var moneyFlowLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

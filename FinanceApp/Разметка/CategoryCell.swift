@@ -9,4 +9,5 @@ import UIKit
 
 class CategoryCell: UITableViewCell {
     @IBOutlet weak var categoryNameLabel: UILabel!
+    @IBOutlet weak var colorLabel: UILabel!
 }

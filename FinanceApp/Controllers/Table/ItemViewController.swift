@@ -23,6 +23,8 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
         }
     }
     
+    @IBOutlet weak var addButton: RoundedButton!
+    @IBOutlet weak var transferButton: RoundedButton!
     @IBOutlet weak var balanceLabel: UILabel!
 
     @IBOutlet weak var periodButton: UIButton!
@@ -43,12 +45,20 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
     
     var currentItemIsEditing = false
     var currentTransferIsEditing = false
-
+    var transferIsActive = false
+//        : Bool! {
+//        didSet {
+//            transferIsActive = realm.objects(Account.self).count > 2 ? true : false
+//            transferButton.setState(isActive: transferIsActive)
+//        }
+//    }
+    
     var appCalculations = AppCalculations()
     
     let currency = " rub"
     let dateFormatter = DateFormatter()
     let numberFormatter = NumberFormatter()
+    
     
     var balance: Double = 0.0 { didSet { balanceLabel.text = balance.formattedWithSeparator + currency } }
     var periodTypeString: String = "Today" { didSet { periodLabel.text = periodTypeString } }
@@ -73,25 +83,35 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
         periodButton.frame.size.width = periodLabel.frame.width + 30
         
         loadItems()
+        
+        transferButton.setState(isActive: (realm.objects(Account.self).count > 2 ? true : false))
         //print(Realm.Configuration.defaultConfiguration.fileURL!.path)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        //pagerView.reloadData()
-        
+        addButton.setState(isActive: true)
     }
 
     
     // MARK: - IBActions
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    @IBAction func addButtonPressed(_ sender: RoundedButton) {
         item = nil
         performSegue(withIdentifier: "goToAddItemViewController", sender: self)
     }
     
-    @IBAction func addTransferPressed(_ sender: UIButton) {
-        item = nil
-        performSegue(withIdentifier: "goToAddTransferViewController", sender: self)
+    @IBAction func addTransferPressed(_ sender: RoundedButton) {
+        if realm.objects(Account.self).count > 2 {
+            item = nil
+            performSegue(withIdentifier: "goToAddTransferViewController", sender: self)
+        }
+        else {
+            let alert = UIAlertController(title: "You can't make transfers with one account.", message: "", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
+    
     
     @IBAction func unwindSegue(_ sender: UIStoryboardSegue) {
         // return back
@@ -151,7 +171,8 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
                 cell.nameLabel.text = current.name
                 cell.moneyFlowLabel.text = symbol + current.moneyFlow.formattedWithSeparator + currency
                 cell.dateLabel.text = dateFormatter.string(from: current.dateCreated!)
-                dateIsFuture(check: current.dateCreated!, in: cell)
+                
+                dateIsFuture(check: current.dateCreated!, in: cell, now: nowDate)
                 return cell
             }
             else {
@@ -174,7 +195,7 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
                 }
                 cell.fromAccountLabel.text = current.accountFrom?.accountName
                 cell.toAccountLabel.text = current.accountTo?.accountName
-                dateIsFuture(check: current.dateCreated!, in: cell)
+                dateIsFuture(check: current.dateCreated!, in: cell, now: nowDate)
                 return cell
             }
         }
@@ -271,10 +292,10 @@ class ItemViewController: UIViewController, ItemViewControllerDelegate, UITableV
         }
     }
     
-    func dateIsFuture(check date: Date, in cell: UITableViewCell) {
-        let now = Date()
-        cell.contentView.layer.opacity = date > now ? 0.37 : 1
+    @objc func dateIsFuture(check date: Date, in cell: UITableViewCell, now: Date) {
+        cell.contentView.layer.opacity = (date >= now) ? 0.37 : 1
     }
+
     
     // MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -373,23 +394,3 @@ extension ItemViewController: FSPagerViewDataSource, FSPagerViewDelegate {
     
 }
 
-
-// MARK: - Other extensions
-extension Formatter {
-    static let withSeparator: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        formatter.groupingSeparator = " "
-        return formatter
-    }()
-}
-
-extension Numeric {
-    var formattedWithSeparator: String { Formatter.withSeparator.string(for: self) ?? "" }
-}
-
-extension Array {
-    var tail: Array {
-        return Array(self.dropFirst())
-    }
-}

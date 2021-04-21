@@ -36,6 +36,7 @@ class AddCategoryViewController: UIViewController {
             deleteButton.isHidden = false
             addButton.setTitle("Edit", for: .normal)
             categoryNameTextfield.text = categoryToEdit?.categoryName
+            colorButton.backgroundColor = UIColor(named: categoryToEdit!.color)
         }
         else {
             deleteButton.isHidden = true
@@ -138,16 +139,3 @@ class AddCategoryViewController: UIViewController {
     }
 }
 
-extension UIColor {
-    var name: String? {
-        let str = String(describing: self).dropLast()
-        guard let nameRange = str.range(of: "name = ") else {
-            return nil
-        }
-        let cropped = str[nameRange.upperBound ..< str.endIndex]
-        if cropped.isEmpty {
-            return nil
-        }
-        return String(cropped)
-    }
-}

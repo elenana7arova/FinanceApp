@@ -9,8 +9,13 @@ import Foundation
 import RealmSwift
 
 class Category: Object {
+    @objc dynamic var id = NSUUID().uuidString 
     @objc dynamic var categoryName: String = ""
     @objc dynamic var dateCreated: Date? = nil
     @objc dynamic var isSource: Bool = true
-    let categoryItems = List<Item>()
+    @objc dynamic var color: String = "dark_gray"
+    
+    override class func primaryKey() -> String? {
+        return "id"
+    }
 }

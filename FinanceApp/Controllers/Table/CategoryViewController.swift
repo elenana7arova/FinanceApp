@@ -190,14 +190,5 @@ class CategoryViewController: UIViewController, CategoryViewControllerDelegate, 
     
 }
 
-extension UserDefaults {
-    func indexPath(forKey key: String) -> IndexPath? {
-        guard let indexArray = array(forKey: key) as? [Int] else { return nil }
-        return IndexPath(row: indexArray[0], section: indexArray[1])
-    }
 
-    func set(_ indexPath: IndexPath, forKey key: String) {
-        set([indexPath.row, indexPath.section], forKey: key)
-    }
-}
 

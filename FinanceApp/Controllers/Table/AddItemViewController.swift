@@ -31,6 +31,7 @@ class AddItemViewController: UIViewController {
     var itemToEdit: Item!
     
     var currentItemIsEditing: Bool = false
+    //var transferIsActive = false
     private var isIncome: Bool = true
     private var symbol: String = ""
     
@@ -205,22 +206,13 @@ class AddItemViewController: UIViewController {
                 previousVC.setIndexOfAccount(for: chosenAccount)
                 //delegate?.setIndexOfAccount(for: chosenAccount)
             }
+            //previousVC.transferIsActive = (realm.objects(Account.self).count > 2) ? true : false
+            previousVC.transferButton.setState(isActive: ((realm.objects(Account.self).count > 2) ? true : false))
             previousVC.pagerView.reloadData()
         }
         
     }
 }
 
-// MARK: - Extension for keyboard
-extension AddItemViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(AddItemViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
 
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
 

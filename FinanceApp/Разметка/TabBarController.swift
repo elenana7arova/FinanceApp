@@ -13,6 +13,7 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let layer = CAShapeLayer()
         layer.path = UIBezierPath(
             roundedRect: CGRect(
@@ -45,6 +46,8 @@ class TabBarController: UITabBarController {
 
         self.tabBar.itemWidth = 30.0
         //self.tabBar.itemPositioning = .centered
+        
+        self.selectedIndex = 1 // 5th tab
     }
     
 }

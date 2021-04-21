@@ -1,0 +1,48 @@
+PODS:
+  - Alamofire (5.4.2)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
+  - ColorPickTip (0.4.0)
+  - FSPagerView (0.8.3)
+  - IQKeyboardManagerSwift (6.5.6)
+  - Realm (10.2.0):
+    - Realm/Headers (= 10.2.0)
+  - Realm/Headers (10.2.0)
+  - RealmSwift (10.2.0):
+    - Realm (= 10.2.0)
+  - SwiftyJSON (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - Charts
+  - ColorPickTip
+  - FSPagerView
+  - IQKeyboardManagerSwift
+  - RealmSwift
+  - SwiftyJSON
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - Charts
+    - ColorPickTip
+    - FSPagerView
+    - IQKeyboardManagerSwift
+    - Realm
+    - RealmSwift
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: bfbc4c2fe5909b1d94fb4ef2277c6b3727ef5dae
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  ColorPickTip: 1f0c9d39defb585fa8131ab79ef04bce147b543e
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  Realm: d7914ebf66bb182469726f997c4c38eff286aab0
+  RealmSwift: aad08b7dc8c732b7b5794286e9df83739bf834f1
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+
+PODFILE CHECKSUM: d019737d0c5d1a83b9861a446ecc0d7a506ff07c
+
+COCOAPODS: 1.10.1

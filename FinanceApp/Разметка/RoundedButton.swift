@@ -14,19 +14,24 @@ class RoundedButton: UIButton {
         self.layer.cornerRadius = self.frame.height/2
         self.tintColor = UIColor(named: "light_gray")
     }
-}
-
-class ShadowedRoundedButton: RoundedButton {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.layer.shadowColor = UIColor(named: "medium_gray")!.cgColor
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
-        self.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-        self.layer.shadowOpacity = 0.55
-        self.layer.shadowRadius = 4.5
-        
-        self.tintColor = UIColor(named: "dark_gray")
+    
+    func setState(isActive: Bool) {
+        if isActive {
+            self.layer.shadowColor = UIColor(named: "medium_gray")!.cgColor
+            self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: self.layer.cornerRadius).cgPath
+            self.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+            self.layer.shadowOpacity = 0.55
+            self.layer.shadowRadius = 4.5
+            
+            self.tintColor = UIColor(named: "dark_gray")
+        }
+        else {
+            self.layer.shadowColor = UIColor.clear.cgColor
+            
+            self.tintColor = UIColor(named: "light_gray")
+        }
     }
 }
+
 
 

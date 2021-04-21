@@ -42,11 +42,12 @@ class AddTransferViewController: UIViewController {
             deleteButton.isHidden = true
             addButton.setTitle("Add", for: .normal)
             chosenAccountFrom = K.defaultAccount
-            chosenAccountTo = K.defaultAccount
+            chosenAccountTo = /*K.defaultAccount*/ realm.objects(Account.self).filter("id != %@ && id != %@", chosenAccountFrom!.id, K.defaultAccountIfDeleted!.id).first
         }
 
-        if accountFromPreChosen != nil {
+        if accountFromPreChosen != nil{
             chosenAccountFrom = accountFromPreChosen
+            chosenAccountTo = /*K.defaultAccount*/ realm.objects(Account.self).filter("id != %@ && id != %@", chosenAccountFrom!.id, K.defaultAccountIfDeleted!.id).first
         }
     }
     
@@ -168,21 +169,10 @@ class AddTransferViewController: UIViewController {
             if sender as! String == "addButton" {
                 previousVC.setIndexOfAccount(for: chosenAccountTo)
             }
+            //previousVC.transferIsActive = (realm.objects(Account.self).count > 2) ? true : false
+            previousVC.transferButton.setState(isActive: ((realm.objects(Account.self).count > 2) ? true : false))
             previousVC.pagerView.reloadData()
         }
     }
     
-}
-
-// MARK: - Extension for keyboard
-extension AddTransferViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(AddItemViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }
